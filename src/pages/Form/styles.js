@@ -1,46 +1,44 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Container = styled.div `
-
+export const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   margin: 0px;
   padding: 0px;
   flex-direction: column;
-`
-export const ContainerForm = styled.div `
+`;
+export const ContainerForm = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  
-
-
- 
-
-`
-export const Form = styled.form `
+`;
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
+`;
 
-  
-
-`
-export const Header = styled.div `
-
-  width: 100%;
-  height: 20%;
-  margin: 0px;
-  padding: 0px;
-  box-shadow: 10px 0.2px 0.5px rgba(0, 0, 0, 0.5);
-  background-color: #f3f3f3;
-  img {
-    width: 200px;
-    height: 50px;
-    margin-top: 10px;
-    margin-left: 15px;
-
+export const ContainerButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const DescribeInfluencerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-top: 15px;
+    color: #79747e;
+    font-family: "Nunito", sans-serif;
+    font-weight: normal;
   }
-`
+  h2 {
+    color: #2e1b6b;
+    font-family: "Nunito", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px
+  }
+`;

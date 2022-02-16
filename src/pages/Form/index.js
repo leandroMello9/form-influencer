@@ -1,13 +1,24 @@
 import React, { useState, useCallback } from "react";
 import { cpfMask } from "../../util/Mask";
-import { numberMask } from '../../util/MaskPhone'
-import { ContainerForm, Form, Container, Header } from './styles'
-import { TextField, Button } from '@mui/material';
+import { numberMask } from "../../util/MaskPhone";
+import {
+  ContainerForm,
+  Form,
+  Container,
+  Header,
+  ContainerButton,
+  DescribeInfluencerContainer,
+} from "./styles";
+import { TextField, Button } from "@mui/material";
+import ButtonComponent from "../../components/Button";
 function App() {
   const [cpf, setCpf] = useState("");
-  const [number, setNumber] = useState("")
+  const [number, setNumber] = useState("");
+
   const [surname, setSurName] = useState("");
+
   const [email, setEmail] = useState("");
+
   const onSubmitForm = useCallback((eventForm) => {
     eventForm.preventDefault();
     console.log("Form input");
@@ -15,102 +26,49 @@ function App() {
 
   return (
     <Container>
-      <Header>
-        <img src="https://logodownload.org/wp-content/uploads/2020/12/sulamerica-saude-logo.png"/>
-      </Header>
-      <br/>
-       <ContainerForm>
-      <h1>Cadastro influencer</h1>
-    <br/>
-      <Form onSubmit={onSubmitForm}>
-        <TextField placeholder="Digite seu Apelido"
-          value={surname}
-          onChange={
-            (value) => setSurName(value.target.value)
-          }
-          sx={{
-            "width": {
-              width: 200
-            }
-          }}
-          maxLength={8}
-          id="outlined-basic"
-          label="Apelido"
-          variant="outlined"
-        ></TextField>
-        <br></br>
-        <TextField placeholder="Digite seu CPF, ex 88.444.55-71"
-          value={cpf}
-          onChange={
-            (value) => setCpf(cpfMask(value.target.value))
-
-          }
-          sx={{
-            "width": {
-              width: 300
-            }
-          }}
-          maxLength={8}
-          id="outlined-basic"
-          label="CPF"
-          variant="outlined"
-        ></TextField>
-        <br></br>
-        <TextField placeholder="Digite seu e-mail"
-          type={"email"}
-          value={email}
-          onChange={
-            (value) => setEmail(value.target.value)
-          }
-          sx={{
-            "width": {
-              width: 300
-            }
-          }}
-          maxLength={8}
-          id="outlined-basic"
-          label="E-mail"
-          variant="outlined"
-        ></TextField>
+      <br />
+      <ContainerForm>
+        <DescribeInfluencerContainer>
+          <h2>Cadastro de Influenciador</h2>
+          <p>* Campos obrigatórios</p>
+        </DescribeInfluencerContainer>
 
         <br />
-        <TextField placeholder="Digite seu Telefone"
+        <Form onSubmit={onSubmitForm}>
+         
+          <TextField
+            placeholder="Digite seu CPF, ex 88.444.55-71"
+            value={cpf}
+            onChange={(value) => setCpf(cpfMask(value.target.value))}
+            sx={{
+              width: {
+                width: 400,
+              },
+              "marginBottom": "20px"
+            }}
+            maxLength={8}
+            id="outlined-basic"
+            label="CPF*"
+            variant="outlined"
+          ></TextField>
+         
 
-          value={number}
-          onChange={
-            (value) => {
-              setNumber(numberMask(String(value.target.value)))
-              console.log(numberMask(value.target.value))
-            }
-          }
-          sx={{
-            "width": {
-              width: 200
-            }
-          }}
-          maxLength={8}
-          id="outlined-basic"
-          label="Telefone"
-          variant="outlined"
-        ></TextField>
-        <br></br>
-        <Button type="submit" sx={{
-          "color": "#fff",
-          "font-size": 13,
-          "width": {
-            width: 150
-          }
-        }}
-          variant="contained"
-        >Cadastrar</Button>
+         
+          <ContainerButton>
+            <ButtonComponent
+              label="Cadastrar"
+              width="135"
+              height="45"
+              color="#1C1B1F"
+              radius="90"
+              backgroundColor="rgba(31, 31, 31, 0.12);"
+            ></ButtonComponent>
+          </ContainerButton>
 
-        <br />
-      </Form>
-
-    </ContainerForm>
+          <br />
+        </Form>
+      </ContainerForm>
     </Container>
-   
-
   );
 }
 

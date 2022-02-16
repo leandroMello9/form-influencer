@@ -20,7 +20,7 @@ body {
 }
 body,input,button {
   font: 14px 'Roboto', sans-serif;
-  background: #f5f5f5 0% 0% no-repeat padding-box;
+  background: #ffff 0% 0% no-repeat padding-box;
 }
 a {
   text-decoration: none;

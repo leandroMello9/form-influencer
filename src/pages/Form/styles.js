@@ -41,4 +41,19 @@ export const DescribeInfluencerContainer = styled.div`
     font-size: 24px;
     line-height: 30px
   }
+  @media(max-width: 478px) {
+    h2 {
+      font-size: 18px;
+    }
+  }
+  @media(max-width: 678px) {
+    h2 {
+      font-size: 20px;
+    }
+  }
+   @media(min-width: 1024px) {
+    h2 {
+      font-size: 21px;
+    }
+  } 
 `;

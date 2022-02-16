@@ -12,8 +12,11 @@ export const Button = styled.button`
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  /* button:hover {
-    background-color:  ;
-  } */
+  transition: background-color 0.30s;
+
+ :hover {
+   background-color: #2E1B6B;
+   color: #fff
+ }
   
 `;

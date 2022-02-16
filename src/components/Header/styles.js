@@ -25,6 +25,14 @@ export const Header = styled.div`
     width: 120px;
     height: 50px;
   }
+  @media(max-width: 478px) {
+    
+  }
+  @media(max-width: 678px) {
+    img {
+      width: 110px;
+    }
+  }
 `;
 
 export const HeaderColor = styled.div`

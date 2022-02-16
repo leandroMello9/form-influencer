@@ -7,10 +7,10 @@ export default function HeaderComponent() {
         <HeaderColor></HeaderColor>
       <Header>
           <div></div>
-        <div className="img-container">
+        {/* <div className="img-container">
         <img src="https://logodownload.org/wp-content/uploads/2020/12/sulamerica-saude-logo.png" />
         <img src="https://logodownload.org/wp-content/uploads/2020/12/sulamerica-saude-logo.png"  className="sul-america"/>
-        </div>
+        </div> */}
       </Header>
     </HeaderContainer>
   );

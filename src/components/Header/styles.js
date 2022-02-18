@@ -18,17 +18,16 @@ export const Header = styled.div`
     justify-content: space-between;
     height: 10vh;
   }
-  .sul-america{
-      margin-right: 5vh;
+  .sul-america {
+    margin-right: 5vh;
   }
   img {
     width: 120px;
     height: 50px;
   }
-  @media(max-width: 478px) {
-    
+  @media (max-width: 478px) {
   }
-  @media(max-width: 678px) {
+  @media (max-width: 678px) {
     img {
       width: 110px;
     }
@@ -36,6 +35,65 @@ export const Header = styled.div`
 `;
 
 export const HeaderColor = styled.div`
-  background-color: #F26661;
+  background-color: #f26661;
   height: 5vh;
+`;
+
+export const ButtonExit = styled.button`
+  border: 0px;
+  font-family: "Roboto";
+  font-weight: bold;
+  font-style: normal;
+  line-height: 20px;
+  font-size: 16px;
+  color: #6750a4;
+  
+ 
+`;
+export const ExitContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5vh;
+ 
+  p {
+    color: #6750a4;
+  }
+  @media (max-width: 478px) {
+  }
+  @media (max-width: 678px) {
+    margin-right: 7vh;
+  }
+  @media (max-width: 1024px) {
+    margin-right: 7vh;
+  }
+`;
+export const ButtonExitContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 170px;
+  align-items: center;
+ 
+  button {
+    margin-left: 2vh;
+  }
+  p {
+    border: 0px;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: normal;
+    line-height: 20px;
+    font-size: 14px;
+    color: #6750a4;
+  }
+  @media (max-width: 478px) {
+    width: 60px;
+  }
+  @media (max-width: 678px) {
+    width: 60px;
+  }
+  @media (max-width: 1024px) {
+    width: 60px;
+  }
+    
 `;

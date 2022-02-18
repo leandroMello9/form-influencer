@@ -37,7 +37,7 @@ function App() {
         <Form onSubmit={onSubmitForm}>
          
           <TextField
-            placeholder="Digite seu CPF, ex 88.444.55-71"
+            placeholder="Digite seu CPF, exemplo 888.444.555-71"
             value={cpf}
             onChange={(value) => setCpf(cpfMask(value.target.value))}
             sx={{

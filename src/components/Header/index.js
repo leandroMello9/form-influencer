@@ -7,19 +7,17 @@ import {
   ExitContainer,
   ButtonExitContainer,
 } from "./styles";
-
+import nimiaLogo from '../../assets/logo.svg'
 export default function HeaderComponent() {
   return (
     <HeaderContainer>
       <HeaderColor></HeaderColor>
       <Header>
-        <div></div>
         <div className="img-container">
-          {/* <img src="https://logodownload.org/wp-content/uploads/2020/12/sulamerica-saude-logo.png" />
           <img
-            src="https://logodownload.org/wp-content/uploads/2020/12/sulamerica-saude-logo.png"
+            src={nimiaLogo}
             className="sul-america"
-          /> */}
+          /> 
         </div>
       </Header>
       <ExitContainer>

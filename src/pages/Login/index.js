@@ -15,6 +15,7 @@ export default function Login() {
         <form>
             <TextField
               label="Login"
+              placeholder="Digite seu e-mail de acesso, exemplo (brq.com.br)"
               sx={{
                 width: {
                   width: 500,

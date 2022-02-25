@@ -15,11 +15,11 @@ export const Header = styled.div`
   .img-container {
     display: flex;
     width: 175vh;
-    justify-content: space-between;
     height: 10vh;
+    justify-content: center;
   }
   .sul-america {
-    margin-right: 5vh;
+    width: 200px;
   }
   img {
     width: 120px;

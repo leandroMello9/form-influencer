@@ -27,7 +27,22 @@ export const FormContainer = styled.div`
     width: 100%;
     justify-content: center;
     align-items: center;
-    
+    @media(max-width: 1024px) {
+    .input-login {
+      width: 320px;
+    }
+   }
+  
+   @media(max-width: 478px) {
+    .input-login {
+    }
+   }
+   @media(max-width: 678px) {
+    .input-login {
+      width: 280px;
+    }
+   }
+  
   }
 `;
 export const ContainerInputPassword = styled.div`

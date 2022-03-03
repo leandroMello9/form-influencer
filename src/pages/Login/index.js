@@ -1,39 +1,34 @@
 import React from "react";
-import { TextField } from "@mui/material";
-import {
-  Container,
-  FormContainer,
-  InputPasswordContainer,
-  ContainerInputPassword,
-} from "./styles.js";
+import { Container, FormContainer } from "./styles.js";
 import ButtonComponent from "../../components/Button/index.js";
+import InputComponent from "../../components/Input";
 export default function Login() {
   return (
     <Container>
       <p className="start-text">Vamos começar?</p>
       <FormContainer>
         <form>
-            <TextField
-              label="Login"
-              placeholder="Digite seu e-mail de acesso, exemplo (brq.com.br)"
-              sx={{
-                width: {
-                  width: 500,
-                },
-                marginBottom: "20px",
-              }}
-              className="input-login"
-            />
-            <TextField
-              label="Senha"
-              sx={{
-                width: {
-                  width: 500,
-                },
-                marginBottom: "20px",
-              }}
-              className="input-login"
-            />
+          <InputComponent
+            label="Login"
+            placeholder="Digite seu e-mail de acesso, exemplo (brq.com.br)"
+            sx={{
+              width: {
+                width: 500,
+              },
+              marginBottom: "20px",
+            }}
+            className="input-login"
+          />
+          <InputComponent
+            label="Senha"
+            sx={{
+              width: {
+                width: 500,
+              },
+              marginBottom: "20px",
+            }}
+            className="input-login"
+          />
 
           {/* <InputPasswordContainer>
             <p>
@@ -49,6 +44,7 @@ export default function Login() {
             color="#fff"
             radius="62"
             backgroundColor="#2e1b6b"
+            
           ></ButtonComponent>
         </form>
       </FormContainer>

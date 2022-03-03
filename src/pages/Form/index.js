@@ -1,29 +1,36 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { cpfMask } from "../../util/Mask";
-import { numberMask } from "../../util/MaskPhone";
 import {
   ContainerForm,
   Form,
   Container,
-  Header,
   ContainerButton,
   DescribeInfluencerContainer,
 } from "./styles";
-import { TextField, Button } from "@mui/material";
+import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
+import api from "../../util/axios";
+import { validate } from "gerador-validador-cpf";
+
 function App() {
   const [cpf, setCpf] = useState("");
-  const [number, setNumber] = useState("");
-
-  const [surname, setSurName] = useState("");
-
-  const [email, setEmail] = useState("");
-
-  const onSubmitForm = useCallback((eventForm) => {
-    eventForm.preventDefault();
-    console.log("Form input");
+  const refForm = useRef();
+  const onSubmitForm = useCallback(async (eventForm) => {
+    const cpfValidate = eventForm.target[0].value;
+    try {
+      const cpfFormated = String(cpfValidate)
+        .replace(/\./g, "")
+        .replace("-", "");
+      eventForm.preventDefault();
+      const validateCpf = validate(cpfFormated);
+      if (validateCpf) {
+        const { data } = await api.post("/userInfluencer", {
+          user_cpf: cpf,
+        });
+      }
+      console.log("Error", validateCpf);
+    } catch (err) {}
   }, []);
-
   return (
     <Container>
       <br />
@@ -34,26 +41,14 @@ function App() {
         </DescribeInfluencerContainer>
 
         <br />
-        <Form onSubmit={onSubmitForm}>
-         
-          <TextField
-            placeholder="Digite seu CPF, exemplo 888.444.555-71"
-            value={cpf}
+        <Form onSubmit={onSubmitForm} ref={refForm}>
+          <InputComponnet
+            placeholder="Digite seu cpf, ex 88.44.555-99"
             onChange={(value) => setCpf(cpfMask(value.target.value))}
-            sx={{
-              width: {
-                width: 400,
-              },
-              "marginBottom": "20px"
-            }}
-            maxLength={8}
-            id="outlined-basic"
-            label="CPF*"
-            variant="outlined"
-          ></TextField>
-         
+            value={cpf}
+            label="CPF *"
+          ></InputComponnet>
 
-         
           <ContainerButton>
             <ButtonComponent
               label="Cadastrar"

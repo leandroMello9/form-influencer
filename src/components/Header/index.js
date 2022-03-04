@@ -19,14 +19,15 @@ export default function HeaderComponent() {
             className="sul-america"
           /> 
         </div>
-      </Header>
-      <ExitContainer>
-        <div></div>
-        <div></div>
         <ButtonExitContainer>
           <p>X</p>
           <ButtonExit>Sair</ButtonExit>
         </ButtonExitContainer>
+      </Header>
+      <ExitContainer>
+        <div></div>
+        <div></div>
+        
       </ExitContainer>
     </HeaderContainer>
   );

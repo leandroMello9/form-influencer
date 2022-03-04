@@ -1,14 +1,14 @@
 import React from "react";
 import { Container, FormContainer } from "./styles.js";
 import ButtonComponent from "../../components/Button/index.js";
-import InputComponent from "../../components/Input";
+import {TextField} from "@mui/material";
 export default function Login() {
   return (
     <Container>
       <p className="start-text">Vamos começar?</p>
       <FormContainer>
         <form>
-          <InputComponent
+          <TextField
             label="Login"
             placeholder="Digite seu e-mail de acesso, exemplo (brq.com.br)"
             sx={{
@@ -19,7 +19,7 @@ export default function Login() {
             }}
             className="input-login"
           />
-          <InputComponent
+          <TextField
             label="Senha"
             sx={{
               width: {

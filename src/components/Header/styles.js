@@ -2,6 +2,7 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
+  
 `;
 export const Header = styled.div`
   margin-top: 40px;
@@ -10,11 +11,14 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items:center ;
 
   background-color: #fff;
   .img-container {
     display: flex;
     width: 175vh;
+    position:relative ;
+    left: 90px;
     height: 10vh;
     justify-content: center;
   }
@@ -25,18 +29,40 @@ export const Header = styled.div`
     width: 120px;
     height: 50px;
   }
-  @media (max-width: 478px) {
+  @media (max-width: 1024px) {
+    width: 75%;
+    margin-left: 0px;
+   
   }
   @media (max-width: 678px) {
+    width: 88%;
+    margin-left: 15px;
     img {
-      width: 110px;
+      width: 150px;
+      position:  relative;
+      right: 72px;
     }
   }
+
 `;
 
 export const HeaderColor = styled.div`
   background-color: #f26661;
   height: 5vh;
+ 
+ 
+  @media(max-width: 478px) {
+    width: 483px;
+  }
+ 
+  @media(max-width: 678px) {
+    width: 483px;
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
+    
+   
+  }
 `;
 
 export const ButtonExit = styled.button`
@@ -73,7 +99,9 @@ export const ButtonExitContainer = styled.div`
   flex-direction: row;
   width: 170px;
   align-items: center;
- 
+ position: relative ;
+ right: 35px;
+ bottom: 15px;
   button {
     margin-left: 2vh;
   }

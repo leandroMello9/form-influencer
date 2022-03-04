@@ -14,6 +14,7 @@ import { validate } from "gerador-validador-cpf";
 
 function App() {
   const [cpf, setCpf] = useState("");
+  const [error, setError] = useState(false);
   const refForm = useRef();
   const onSubmitForm = useCallback(async (eventForm) => {
     const cpfValidate = eventForm.target[0].value;
@@ -24,12 +25,29 @@ function App() {
       eventForm.preventDefault();
       const validateCpf = validate(cpfFormated);
       if (validateCpf) {
-        const { data } = await api.post("/userInfluencer", {
-          user_cpf: cpf,
+        try {
+          const { data } = await api.post("/userInfluencer", {
+            user_cpf: cpfFormated,
+          });
+          setError(false);
+        } catch (err) {
+          setError({
+            msg: "Usuário já cadastrado, tente outro cpf",
+            error: true,
+          });
+        }
+      } else {
+        setError({
+          msg: "Cpf inválido",
+          error: true,
         });
       }
-      console.log("Error", validateCpf);
-    } catch (err) {}
+    } catch (err) {
+      setError({
+        msg: err,
+        error: true,
+      });
+    }
   }, []);
   return (
     <Container>
@@ -41,12 +59,17 @@ function App() {
         </DescribeInfluencerContainer>
 
         <br />
-        <Form onSubmit={onSubmitForm} ref={refForm}>
+        <Form onSubmit={onSubmitForm} ref={refForm} className="cpf-form">
           <InputComponnet
             placeholder="Digite seu cpf, ex 88.44.555-99"
-            onChange={(value) => setCpf(cpfMask(value.target.value))}
+            onChange={(value) => {
+              setCpf(cpfMask(value.target.value));
+              setError(false);
+            }}
             value={cpf}
             label="CPF *"
+            error={cpf === "" ? false : error}
+            className="cpf-input"
           ></InputComponnet>
 
           <ContainerButton>
@@ -57,6 +80,7 @@ function App() {
               color="#1C1B1F"
               radius="90"
               backgroundColor="rgba(31, 31, 31, 0.12);"
+              className="cpf-button"
             ></ButtonComponent>
           </ContainerButton>
 

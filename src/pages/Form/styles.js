@@ -18,6 +18,7 @@ export const ContainerForm = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center ;
 `;
 
 export const ContainerButton = styled.div`
@@ -57,3 +58,12 @@ export const DescribeInfluencerContainer = styled.div`
     }
   } 
 `;
+export const ListenUsersContainer = styled.div`
+`
+
+export const LineContainer = styled.div`
+
+  height: 1px ;
+  width: ${props => props.width ? props.width + "px" : "1128px"};
+  background: rgba(33, 33, 33, 0.08);
+`

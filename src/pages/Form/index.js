@@ -6,15 +6,33 @@ import {
   Container,
   ContainerButton,
   DescribeInfluencerContainer,
+  ListenUsersContainer,
+  LineContainer
 } from "./styles";
 import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
 import api from "../../util/axios";
 import { validate } from "gerador-validador-cpf";
+import User from '../../components/User'
 
 function App() {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState(false);
+  const [marked_users, setMarkedUsers] = useState([
+    {
+      name: "Leandro",
+      status: true,
+      cpf: "075.331.495-99",
+      statusMsg: "Cadastro completo"
+    },
+    {
+      name: "Annibal",
+      status: false,
+      cpf: "075.335.777-99",
+      statusMsg: "Cadastro incompleto"
+    },
+
+  ])
   const refForm = useRef();
   const onSubmitForm = useCallback(async (eventForm) => {
     const cpfValidate = eventForm.target[0].value;
@@ -83,10 +101,15 @@ function App() {
               className="cpf-button"
             ></ButtonComponent>
           </ContainerButton>
-
+          <LineContainer></LineContainer>
           <br />
         </Form>
+        <DescribeInfluencerContainer>
+          <h2>Influenciadores cadastrados</h2>
+         
+        </DescribeInfluencerContainer>
       </ContainerForm>
+      <User users={marked_users}/>
     </Container>
   );
 }

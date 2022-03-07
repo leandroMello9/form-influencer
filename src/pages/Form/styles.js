@@ -67,3 +67,8 @@ export const LineContainer = styled.div`
   width: ${props => props.width ? props.width + "px" : "1128px"};
   background: rgba(33, 33, 33, 0.08);
 `
+export const LoadingContainer = styled.div`
+  display: flex ;
+  justify-content: center ;
+  margin-top: 20px;
+`;

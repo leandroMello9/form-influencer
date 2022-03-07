@@ -8,6 +8,8 @@ export default function RoutesMain() {
   useEffect(() => {
     if (token) {
       navigate("/form");
+    } else {
+      navigate("/login");
     }
   }, []);
   return (
@@ -15,7 +17,10 @@ export default function RoutesMain() {
       <Routes>
         <Route path="/form" element={<FormUser />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={ token ? <Navigate to="/form"/> : <Navigate to="/login" />} />
+        <Route
+          path="*"
+          element={token ? <Navigate to="/form" /> : <Navigate to="/login" />}
+        />
       </Routes>
     </>
   );

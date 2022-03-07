@@ -19,7 +19,7 @@ const User = ({ users }) => {
             <CpfUser>{user.cpf}</CpfUser>
             <Status>
               <StatusColor status={user.status} />
-              {user.statusMsg}
+              {user.status ? "Ativo" : "Inativo"}
             </Status>
             <button>Clicar</button>
           </ContainerUser>

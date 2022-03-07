@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { cpfMask } from "../../util/Mask";
 import {
   ContainerForm,
@@ -8,35 +8,39 @@ import {
   DescribeInfluencerContainer,
   ListenUsersContainer,
   LineContainer,
+  LoadingContainer
 } from "./styles";
 import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
 import { app } from "../../util/axios";
 import { validate } from "gerador-validador-cpf";
 import User from "../../components/User";
+import ReactLoading from 'react-loading';
 
 function App() {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState(false);
-  const [marked_users, setMarkedUsers] = useState([
-    {
-      name: "Leandro",
-      status: true,
-      cpf: cpfMask("07533149599"),
-      statusMsg: "Cadastro completo",
-    },
-    {
-      name: "Annibal",
-      status: false,
-      cpf: "075.335.777-99",
-      statusMsg: "Cadastro incompleto",
-    },
-  ]);
+  const [marked_users, setMarkedUsers] = useState([])
+  const [name, setName] = useState("")
+  const [loading, setLoading] = useState(false)
   const refForm = useRef();
+  useEffect(() => {
+    const handleUsersInfluencer = async () => {
+      try {
+        setLoading(true)
+        const { data } = await app.get("/userInfluencer/all");
+        setLoading(false)
+        setMarkedUsers((users) => [...data]);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    
+    handleUsersInfluencer();
+  }, []);
   const onSubmitForm = useCallback(async (eventForm) => {
     const cpfValidate = eventForm.target[1].value;
     const nameUser = eventForm.target[0].value;
-    console.log(nameUser)
     try {
       const cpfFormated = String(cpfValidate)
         .replace(/\./g, "")
@@ -50,6 +54,13 @@ function App() {
             user_name: nameUser,
           });
           setError(false);
+          setMarkedUsers(users => [...users, {
+            name: nameUser,
+            cpf: cpfFormated,
+            status: false
+          }])
+          setCpf("")
+          setName("")
         } catch (err) {
           setError({
             msg: "Usuário já cadastrado, tente outro cpf",
@@ -70,6 +81,10 @@ function App() {
       });
     }
   }, []);
+  const loadingOurListenUsers = loading ? <LoadingContainer>
+    <ReactLoading height={35} width={35} color="#f26661" type="spin"/>
+  </LoadingContainer> : <User users={marked_users} />
+
   return (
     <Container>
       <br />
@@ -87,6 +102,10 @@ function App() {
             error={error.type === "cpf" ? false : error}
             className="cpf-input"
             maxlength={14}
+            value={name}
+            onChange={(value) => {
+              setName(value.target.value)
+            }}
           ></InputComponnet>
           <InputComponnet
             placeholder="Digite seu cpf, ex 88.44.555-99"
@@ -118,7 +137,7 @@ function App() {
           <h2>Influenciadores cadastrados</h2>
         </DescribeInfluencerContainer>
       </ContainerForm>
-      <User users={marked_users} />
+      {loadingOurListenUsers}
     </Container>
   );
 }

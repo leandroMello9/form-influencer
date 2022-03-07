@@ -30,6 +30,13 @@ export const ContainerInput = styled.div`
       transition: 0.4s;
       background-color: #fff;
       color: #3951b2;
+      
+    }
+    :focus {
+      ::placeholder {
+        transition: 0.5s ;
+        color: black;
+      }
     }
     :not(:placeholder-shown) + label {
       top: -70px;

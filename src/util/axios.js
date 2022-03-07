@@ -5,4 +5,11 @@ const app = axios.create({
     "App-token": "eaeasda7511s3#@!#$$",
   },
 });
-export default app;
+const appGlobal = axios.create({
+  baseURL: "https://api.dev.vieco.com.br/auth/v1"
+})
+export {
+  app,
+  appGlobal
+
+}

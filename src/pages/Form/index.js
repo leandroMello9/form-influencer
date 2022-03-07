@@ -7,13 +7,13 @@ import {
   ContainerButton,
   DescribeInfluencerContainer,
   ListenUsersContainer,
-  LineContainer
+  LineContainer,
 } from "./styles";
 import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
-import api from "../../util/axios";
+import { app } from "../../util/axios";
 import { validate } from "gerador-validador-cpf";
-import User from '../../components/User'
+import User from "../../components/User";
 
 function App() {
   const [cpf, setCpf] = useState("");
@@ -22,20 +22,21 @@ function App() {
     {
       name: "Leandro",
       status: true,
-      cpf: "075.331.495-99",
-      statusMsg: "Cadastro completo"
+      cpf: cpfMask("07533149599"),
+      statusMsg: "Cadastro completo",
     },
     {
       name: "Annibal",
       status: false,
       cpf: "075.335.777-99",
-      statusMsg: "Cadastro incompleto"
+      statusMsg: "Cadastro incompleto",
     },
-
-  ])
+  ]);
   const refForm = useRef();
   const onSubmitForm = useCallback(async (eventForm) => {
-    const cpfValidate = eventForm.target[0].value;
+    const cpfValidate = eventForm.target[1].value;
+    const nameUser = eventForm.target[0].value;
+    console.log(nameUser)
     try {
       const cpfFormated = String(cpfValidate)
         .replace(/\./g, "")
@@ -44,8 +45,9 @@ function App() {
       const validateCpf = validate(cpfFormated);
       if (validateCpf) {
         try {
-          const { data } = await api.post("/userInfluencer", {
+          const { data } = await app.post("/userInfluencer", {
             user_cpf: cpfFormated,
+            user_name: nameUser,
           });
           setError(false);
         } catch (err) {
@@ -56,6 +58,7 @@ function App() {
         }
       } else {
         setError({
+          type: "cpf",
           msg: "Cpf inválido",
           error: true,
         });
@@ -78,6 +81,13 @@ function App() {
 
         <br />
         <Form onSubmit={onSubmitForm} ref={refForm} className="cpf-form">
+          <InputComponnet
+            placeholder="Digite seu nome"
+            label="Nome *"
+            error={error.type === "cpf" ? false : error}
+            className="cpf-input"
+            maxlength={14}
+          ></InputComponnet>
           <InputComponnet
             placeholder="Digite seu cpf, ex 88.44.555-99"
             onChange={(value) => {
@@ -106,10 +116,9 @@ function App() {
         </Form>
         <DescribeInfluencerContainer>
           <h2>Influenciadores cadastrados</h2>
-         
         </DescribeInfluencerContainer>
       </ContainerForm>
-      <User users={marked_users}/>
+      <User users={marked_users} />
     </Container>
   );
 }

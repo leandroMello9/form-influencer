@@ -18,7 +18,7 @@ export const ContainerForm = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center ;
+  align-items: center;
 `;
 
 export const ContainerButton = styled.div`
@@ -40,35 +40,63 @@ export const DescribeInfluencerContainer = styled.div`
     font-family: "Nunito", sans-serif;
     font-weight: bold;
     font-size: 24px;
-    line-height: 30px
+    line-height: 30px;
   }
-  @media(max-width: 478px) {
+  @media (max-width: 478px) {
     h2 {
       font-size: 18px;
     }
   }
-  @media(max-width: 678px) {
+  @media (max-width: 678px) {
     h2 {
       font-size: 20px;
     }
   }
-   @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     h2 {
       font-size: 21px;
     }
-  } 
+  }
 `;
-export const ListenUsersContainer = styled.div`
-`
+export const ListenUsersContainer = styled.div``;
 
 export const LineContainer = styled.div`
-
-  height: 1px ;
-  width: ${props => props.width ? props.width + "px" : "1128px"};
+  height: 1px;
+  width: ${(props) => (props.width ? props.width + "px" : "1128px")};
   background: rgba(33, 33, 33, 0.08);
-`
+  margin-top: 8px;
+`;
 export const LoadingContainer = styled.div`
-  display: flex ;
-  justify-content: center ;
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
+`;
+
+export const InfoIfluencerContainer = styled.div`
+  display: flex;
+  height: 100px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column ;
+`;
+export const InfoContainer = styled.div`
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+
+  .info-perfil {
+    position: relative;
+    left: 80px;
+  }
+  .info-cpf {
+    position: relative;
+  }
+  p {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;

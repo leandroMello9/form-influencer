@@ -7,6 +7,7 @@ export const FooterContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 480px;
     @media (max-width: 678px) {
     width: 483px;
     

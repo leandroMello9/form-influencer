@@ -8,34 +8,36 @@ import {
   DescribeInfluencerContainer,
   ListenUsersContainer,
   LineContainer,
-  LoadingContainer
+  LoadingContainer,
+  InfoIfluencerContainer,
+  InfoContainer,
 } from "./styles";
 import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
 import { app } from "../../util/axios";
 import { validate } from "gerador-validador-cpf";
 import User from "../../components/User";
-import ReactLoading from 'react-loading';
+import ReactLoading from "react-loading";
 
 function App() {
   const [cpf, setCpf] = useState("");
   const [error, setError] = useState(false);
-  const [marked_users, setMarkedUsers] = useState([])
-  const [name, setName] = useState("")
-  const [loading, setLoading] = useState(false)
+  const [marked_users, setMarkedUsers] = useState([]);
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
   const refForm = useRef();
   useEffect(() => {
     const handleUsersInfluencer = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
         const { data } = await app.get("/userInfluencer/all");
-        setLoading(false)
+        setLoading(false);
         setMarkedUsers((users) => [...data]);
       } catch (err) {
         console.log(err);
       }
-    }
-    
+    };
+
     handleUsersInfluencer();
   }, []);
   const onSubmitForm = useCallback(async (eventForm) => {
@@ -54,13 +56,19 @@ function App() {
             user_name: nameUser,
           });
           setError(false);
-          setMarkedUsers(users => [...users, {
-            name: nameUser,
-            cpf: cpfFormated,
-            status: false
-          }])
-          setCpf("")
-          setName("")
+
+          setMarkedUsers((users) => [
+            ...users,
+            {
+              name: nameUser,
+              cpf: cpfFormated,
+              status: false,
+            },
+          ]);
+
+          setCpf("");
+
+          setName("");
         } catch (err) {
           setError({
             msg: "Usuário já cadastrado, tente outro cpf",
@@ -81,9 +89,13 @@ function App() {
       });
     }
   }, []);
-  const loadingOurListenUsers = loading ? <LoadingContainer>
-    <ReactLoading height={35} width={35} color="#f26661" type="spin"/>
-  </LoadingContainer> : <User users={marked_users} />
+  const loadingOurListenUsers = loading ? (
+    <LoadingContainer>
+      <ReactLoading height={35} width={35} color="#f26661" type="spin" />
+    </LoadingContainer>
+  ) : (
+    <User users={marked_users} />
+  );
 
   return (
     <Container>
@@ -104,7 +116,7 @@ function App() {
             maxlength={14}
             value={name}
             onChange={(value) => {
-              setName(value.target.value)
+              setName(value.target.value);
             }}
           ></InputComponnet>
           <InputComponnet
@@ -137,6 +149,16 @@ function App() {
           <h2>Influenciadores cadastrados</h2>
         </DescribeInfluencerContainer>
       </ContainerForm>
+      <InfoIfluencerContainer>
+        <InfoContainer>
+          <p>Nome</p>
+          <p className="info-cpf">CPF</p>
+          <p className="info-perfil">Perfil Influenciador</p>
+          <p className="">Acesso Influenciador</p>
+        </InfoContainer>
+        <LineContainer width={900} />
+
+      </InfoIfluencerContainer>
       {loadingOurListenUsers}
     </Container>
   );

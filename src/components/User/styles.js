@@ -11,9 +11,26 @@ export const ContainerUser = styled.div`
   display: flex;
   flex-direction: row;
   height: 40px;
+  max-width: 1500px;
+
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  p {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+  }
+  @media (max-width: 678px) {
+    max-width: 1000px;
+    width: 125%;
+    position: relative;
+    right: 45px;
+    p {
+        font-size: 12px ;
+    }
+  }
 `;
 
 export const NameUser = styled.p`
@@ -28,15 +45,23 @@ export const Status = styled.div`
   display: flex;
   align-items: center;
   width: 150px;
-  font: 14px "Roboto", sans-serif;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  @media (max-width: 678px) {
+    font-size: 12px ;
+  }
 `;
 
 export const StatusColor = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 15px;
+ 
   background-color: ${(props) => (props.status ? "#91B94A" : "#B00020")};
   margin-right: 5px;
+  
 `;
 
 export const ContainerMap = styled.div`

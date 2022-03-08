@@ -1,12 +1,15 @@
 import axios from "axios";
 const app = axios.create({
-  baseURL: "http://localhost:3333",
+  baseURL: process.env.REACT_APP_LOCAL_API,
   headers: {
-    "App-token": "eaeasda7511s3#@!#$$",
+    "App-token": process.env.REACT_APP_TOKEN_API + "$$",
   },
 });
 const appGlobal = axios.create({
-  baseURL: "https://api.dev.vieco.com.br/auth/v1"
+  baseURL: process.env.REACT_APP_GLOBAL_API,
+  headers: {
+    "App-token": process.env.REACT_APP_TOKEN_API + "$$",
+  },
 })
 export {
   app,

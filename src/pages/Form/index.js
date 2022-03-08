@@ -14,7 +14,7 @@ import {
 } from "./styles";
 import InputComponnet from "../../components/Input";
 import ButtonComponent from "../../components/Button";
-import { app } from "../../util/axios";
+import { app, appGlobal } from "../../util/axios";
 import { validate } from "gerador-validador-cpf";
 import User from "../../components/User";
 import ReactLoading from "react-loading";
@@ -26,6 +26,7 @@ function App() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const refForm = useRef();
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const handleUsersInfluencer = async () => {
       try {
@@ -54,6 +55,7 @@ function App() {
           const { data } = await app.post("/userInfluencer", {
             user_cpf: cpfFormated,
             user_name: nameUser,
+            user_status: "I",
           });
           setError(false);
 
@@ -69,6 +71,18 @@ function App() {
           setCpf("");
 
           setName("");
+          try {
+            const { data } = await app.get(
+              `/userInfluencer/getGlobal?user_cpf=${cpfFormated}`,
+              {
+                headers: {
+                  authorization: token,
+                },
+              }
+            );
+          } catch (err) {
+            alert("Usuário cadastro, mais não foi encontrado no global.");
+          }
         } catch (err) {
           setError({
             msg: "Usuário já cadastrado, tente outro cpf",
@@ -142,11 +156,11 @@ function App() {
               className="cpf-button"
             ></ButtonComponent>
           </ContainerButton>
-          <LineContainer></LineContainer>
+          <LineContainer width={100}></LineContainer>
           <br />
         </Form>
         <DescribeInfluencerContainer>
-          <h2>Influenciadores cadastrados</h2>
+          <h2>Influenciadores</h2>
         </DescribeInfluencerContainer>
       </ContainerForm>
       <InfoIfluencerContainer>
@@ -156,8 +170,7 @@ function App() {
           <p className="info-perfil">Perfil Influenciador</p>
           <p className="">Acesso Influenciador</p>
         </InfoContainer>
-        <LineContainer width={900} />
-
+        <LineContainer width={100} />
       </InfoIfluencerContainer>
       {loadingOurListenUsers}
     </Container>

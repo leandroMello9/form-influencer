@@ -47,7 +47,7 @@ const User = ({ users }) => {
               ></SubContainer>
             </ButtonContainer>
           </ContainerUser>
-          <LineContainer width={1000} />
+          <LineContainer width={100} />
         </ContainerMap>
       ))}
     </Container>

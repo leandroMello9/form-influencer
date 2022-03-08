@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import User from "../components/User";
 
-test("Rederizando componente Footer", () => {
+test("Rederizando componente User", () => {
   const component = renderer.create(<User users={[
     {
         name: "Leo",

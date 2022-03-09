@@ -7,9 +7,9 @@ const app = axios.create({
 });
 const appGlobal = axios.create({
   baseURL: process.env.REACT_APP_GLOBAL_API,
-  headers: {
-    "App-token": process.env.REACT_APP_TOKEN_API + "$$",
-  },
+  // headers: {
+  //   "App-token": process.env.REACT_APP_TOKEN_API + "$$",
+  // },
 })
 export {
   app,

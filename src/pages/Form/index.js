@@ -58,12 +58,12 @@ function App() {
             user_status: "I",
           });
           setError(false);
-
+          //
           setMarkedUsers((users) => [
             ...users,
             {
               name: nameUser,
-              cpf: cpfFormated,
+              cpf: cpfValidate,
               status: false,
             },
           ]);
@@ -81,7 +81,7 @@ function App() {
               }
             );
           } catch (err) {
-            alert("Usuário cadastro, mais não foi encontrado no global.");
+            alert("Usuário foi cadastro, mais não foi encontrado no global.");
           }
         } catch (err) {
           setError({
@@ -128,6 +128,7 @@ function App() {
             error={error.type === "cpf" ? false : error}
             className="cpf-input"
             maxlength={14}
+            required
             value={name}
             onChange={(value) => {
               setName(value.target.value);

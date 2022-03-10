@@ -44,6 +44,19 @@ export const FormContainer = styled.div`
    }
   
   }
+  .container-error {
+    max-width: 1000px;
+    width: 75% ;
+    display: flex ;
+    flex-direction: row ;
+    justify-content: space-between ;
+    position: relative ;
+    bottom: 15px;
+    p {
+      font-size: 12px ;
+      color: red
+    }
+  }
 `;
 export const ContainerInputPassword = styled.div`
   background-color: green;

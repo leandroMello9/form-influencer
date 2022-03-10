@@ -40,10 +40,8 @@ export const AuthProvider = ({ children }) => {
       navigate("/form")
       //navigate("/marked")
     } catch (err) {
-      alert(
-        "Falha em fazer login",
-        "Login invalido, verifique suas crendencias"
-      );
+      throw new Error(err);
+     
     }
   }, []);
 

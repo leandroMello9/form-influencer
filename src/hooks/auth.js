@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }) => {
 
       setData({ accessToken, expirationTime });
       navigate("/form")
-      //navigate("/marked")
     } catch (err) {
       throw new Error(err);
      

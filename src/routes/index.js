@@ -6,11 +6,11 @@ export default function RoutesMain() {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   useEffect(() => {
-    if (token) {
-      navigate("/form");
-    } else {
-      navigate("/login");
-    }
+    // if (token) {
+    //   navigate("/form");
+    // } else {
+    //   navigate("/login");
+    // }
   }, []);
   return (
     <>

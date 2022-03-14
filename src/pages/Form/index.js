@@ -44,11 +44,20 @@ function App() {
   const onSubmitForm = useCallback(async (eventForm) => {
     const cpfValidate = eventForm.target[1].value;
     const nameUser = eventForm.target[0].value;
+    eventForm.preventDefault();
     try {
+      if (/\d/.test(nameUser)) {
+        setError({
+          type: "name",
+          msg: "Não pode conter numeros no nome.",
+          error: true,
+        });
+        return;
+      }
+      setError(false);
       const cpfFormated = String(cpfValidate)
         .replace(/\./g, "")
         .replace("-", "");
-      eventForm.preventDefault();
       const validateCpf = validate(cpfFormated);
       if (validateCpf) {
         try {
@@ -58,7 +67,7 @@ function App() {
             user_status: "I",
           });
           setError(false);
-          //
+
           setMarkedUsers((users) => [
             ...users,
             {
@@ -125,7 +134,7 @@ function App() {
           <InputComponnet
             placeholder="Digite seu nome"
             label="Nome *"
-            error={error.type === "cpf" ? false : error}
+            error={error.type === "name" ? error : false}
             className="cpf-input"
             maxlength={14}
             required
@@ -142,7 +151,7 @@ function App() {
             }}
             value={cpf}
             label="CPF *"
-            error={cpf === "" ? false : error}
+            error={error.type === "cpf" ? error : false}
             className="cpf-input"
           ></InputComponnet>
 
